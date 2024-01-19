@@ -1,0 +1,55 @@
+.theme-one table,
+.theme-one th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0.5rem;
+  vertical-align: top;
+}
+.theme-one td {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding: 0.25rem;
+  border-bottom: none;
+  text-align: center;
+}
+.theme-one td.course {
+  text-align: start;
+}
+.theme-one td.course-name {
+  width: 40%;
+}
+.theme-one tr:last-child {
+  border-bottom: 1px solid black;
+}
+.theme-one h1 {
+  color: #d15b1e;
+  font-family: "Berkshire Swash", serif;
+  font-size: 30px !important;
+}
+
+.checked-anim {
+  animation: checkedAnim 0.3 ease-in-out;
+}
+
+@keyframes checkedAnim {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.section-from-right {
+  animation: sectionFromRight1 1s ease-in-out;
+  animation-delay: 0.5s;
+}
+
+@keyframes sectionFromRight {
+  0% {
+    transform: translateX(300px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

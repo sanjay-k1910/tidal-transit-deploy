@@ -1,0 +1,61 @@
+---
+import NavBar from "../components/NavBar.astro";
+import "../global/global.css";
+  import 'react-toastify/dist/ReactToastify.css';
+
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+const initData: any = {};
+
+const envKeys: string[] = [...Object.keys(process.env), ...Object.keys(import.meta.env)];
+
+envKeys.forEach((item: string) => {
+  initData[item] = process.env[item] || import.meta.env[item];
+});
+
+let globalThis: any = {}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <NavBar />
+    <slot />
+  </body>
+</html>
+<script define:vars={{ initData, envKeys }}>
+  envKeys.forEach((item) => {
+    globalThis[item] = initData[item];
+  });
+</script>
+<style is:global>
+  /* :root {
+		--accent: 136, 58, 234;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 30%,
+			white 60%
+		);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: #13151a;
+		background-size: 224px;
+	} */
+</style>

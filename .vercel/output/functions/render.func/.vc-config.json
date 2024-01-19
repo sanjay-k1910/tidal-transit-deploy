@@ -1,0 +1,6 @@
+{
+	"runtime": "nodejs18.x",
+	"handler": "home/sanjay/Documents/workspace/university/tidal-transit/dist/entry.mjs",
+	"launcherType": "Nodejs",
+	"supportsResponseStreaming": true
+}

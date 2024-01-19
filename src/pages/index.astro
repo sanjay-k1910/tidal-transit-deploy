@@ -1,0 +1,31 @@
+---
+import IssueCredentials from "../components/IssueCredentials";
+import Layout from "../layouts/Layout.astro";
+import { getSupabaseClient, loginUser } from "../api/auth";
+
+let token = Astro.cookies.get("session")?.value;
+
+const login = async () => {
+  const res = await loginUser();
+  Astro.cookies.set("session", res);
+};
+
+if (token) {
+  const {
+    data: { user }
+  } = await getSupabaseClient().auth.getUser(token);
+  if (!user) {
+    await login();
+  }
+} else {
+  await login();
+}
+
+token = Astro.cookies.get("session")?.value;
+---
+
+<Layout title="CREDEBL-Issuer App">
+  <main>
+    <IssueCredentials token={token || ""} client:visible />
+  </main>
+</Layout>
