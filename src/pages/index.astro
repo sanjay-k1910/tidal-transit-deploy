@@ -23,7 +23,6 @@ if (token) {
 
 token = Astro.cookies.get("session")?.value;
 ---
-
 <Layout title="CREDEBL-Issuer App">
   <main>
     <IssueCredentials token={token || ""} client:visible />
